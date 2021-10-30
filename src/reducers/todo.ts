@@ -3,7 +3,7 @@ import React from "react";
 export type Todo = {
   content: string;
   note?: string;
-  isDone?: boolean;
+  isDone: boolean;
 };
 
 export type Todos = Array<Todo>;
@@ -18,7 +18,10 @@ export enum ActionType {
 export type Action =
   | {
       type: ActionType.ADD_TODO;
-      payload: Todo;
+      payload: {
+        content: string;
+        note: string;
+      };
     }
   | {
       type: ActionType.REMOVE_TODO;
@@ -46,6 +49,7 @@ export const reducer: React.Reducer<State, Action> = (
         {
           content: action.payload.content,
           note: action.payload.note,
+          isDone: false,
         },
       ];
     case ActionType.REMOVE_TODO:
