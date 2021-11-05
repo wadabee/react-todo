@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TodoContext } from "../App";
 import { Action, ActionType, Todos } from "../reducers/todo";
 
 type Props = {
@@ -6,7 +7,8 @@ type Props = {
   dispatch: React.Dispatch<Action>;
 };
 
-const TodoCard: React.FC<Props> = ({ todos, dispatch }) => {
+const TodoCard: React.FC = () => {
+  const { todos, dispatch } = useContext(TodoContext);
   const removeTodo = (idx: number) => {
     dispatch({
       type: ActionType.REMOVE_TODO,

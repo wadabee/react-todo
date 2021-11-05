@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { TodoContext } from "../App";
 import { Action, ActionType } from "../reducers/todo";
 
 type Props = {
   dispatch: React.Dispatch<Action>;
 };
 
-const InputForm: React.FC<Props> = ({ dispatch }) => {
+const InputForm: React.FC = () => {
+  const { dispatch } = useContext(TodoContext);
+
   const [content, setContent] = useState<string>("");
   const [note, setNote] = useState<string>("");
 
