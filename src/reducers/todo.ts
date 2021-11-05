@@ -8,14 +8,14 @@ export type Todo = {
 
 export type Todos = Array<Todo>;
 
-export type State = Todos;
+export type TodoState = Todos;
 export enum ActionType {
   ADD_TODO,
   REMOVE_TODO,
   REMOVE_ALL,
   SET_DONE,
 }
-export type Action =
+export type TodoAction =
   | {
       type: ActionType.ADD_TODO;
       payload: {
@@ -38,9 +38,9 @@ export type Action =
       };
     };
 
-export const reducer: React.Reducer<State, Action> = (
-  state: State,
-  action: Action
+export const reducer: React.Reducer<TodoState, TodoAction> = (
+  state: TodoState,
+  action: TodoAction
 ) => {
   switch (action.type) {
     case ActionType.ADD_TODO:

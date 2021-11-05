@@ -1,14 +1,9 @@
-import React, { useContext } from "react";
-import { TodoContext } from "../App";
-import { Action, ActionType, Todos } from "../reducers/todo";
-
-type Props = {
-  todos: Todos;
-  dispatch: React.Dispatch<Action>;
-};
+import React from "react";
+import { useTodo } from "../context/todo";
+import { ActionType } from "../reducers/todo";
 
 const TodoTable: React.FC = () => {
-  const { todos, dispatch } = useContext(TodoContext);
+  const { todos, dispatch } = useTodo();
 
   const removeTodo = (idx: number) => {
     dispatch({
