@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useTodo } from "../context/todo";
 import { ActionType } from "../reducers/todo";
 
@@ -7,6 +7,12 @@ const InputForm: React.FC = () => {
 
   const [content, setContent] = useState<string>("");
   const [note, setNote] = useState<string>("");
+
+  const canRegister = useMemo(() => content !== "", [content]);
+  const registerButtonClass = useMemo(
+    () => (canRegister ? "btn-blue" : "btn-gray"),
+    [canRegister]
+  );
 
   const inputContent = (e: React.ChangeEvent<HTMLInputElement>) => {
     setContent(e.target.value);
@@ -60,7 +66,12 @@ const InputForm: React.FC = () => {
         />
       </span>
 
-      <button className="btn-blue" onClick={addTodo}>
+      {canRegister}
+      <button
+        className={registerButtonClass}
+        onClick={addTodo}
+        disabled={!canRegister}
+      >
         タスク追加
       </button>
       <button className="btn-red" onClick={removeAll}>

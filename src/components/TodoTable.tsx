@@ -16,7 +16,10 @@ const TodoTable: React.FC = () => {
       </thead>
       <tbody>
         {todos.map((todo, idx) => (
-          <tr key={idx} className={todo.isDone ? "line-through" : ""}>
+          <tr
+            key={idx}
+            className={todo.isDone ? "line-through appear" : "appear"}
+          >
             <td>
               <input
                 type="checkbox"
