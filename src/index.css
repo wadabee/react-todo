@@ -16,6 +16,47 @@
   @apply btn bg-red-700;
 }
 
+.btn-gray {
+  @apply btn bg-gray-400;
+}
+
 .text-input {
   @apply rounded border-black border;
+}
+
+.appear {
+  transform-origin: center top;
+  animation: show 1s both;
+}
+@keyframes show {
+  0% {
+    transform: translate(0, 2em);
+    opacity: 0;
+    /* text-shadow: 0 0 0 #0f0; */
+  }
+  50% {
+    /* text-shadow: 0 0 0.5em #0f0; */
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+    /* text-shadow: none; */
+  }
+}
+
+.disappear {
+  transform-origin: center top;
+  animation: hide 1s both;
+}
+@keyframes hide {
+  0% {
+    /* transform: translate(0, 0); */
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    /* transform: rotateX(2em); */
+    display: none;
+  }
 }

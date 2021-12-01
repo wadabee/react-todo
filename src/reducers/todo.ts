@@ -3,22 +3,25 @@ import React from "react";
 export type Todo = {
   content: string;
   note?: string;
-  isDone?: boolean;
+  isDone: boolean;
 };
 
 export type Todos = Array<Todo>;
 
-export type State = Todos;
+export type TodoState = Todos;
 export enum ActionType {
   ADD_TODO,
   REMOVE_TODO,
   REMOVE_ALL,
   SET_DONE,
 }
-export type Action =
+export type TodoAction =
   | {
       type: ActionType.ADD_TODO;
-      payload: Todo;
+      payload: {
+        content: string;
+        note: string;
+      };
     }
   | {
       type: ActionType.REMOVE_TODO;
@@ -35,9 +38,9 @@ export type Action =
       };
     };
 
-export const reducer: React.Reducer<State, Action> = (
-  state: State,
-  action: Action
+export const reducer: React.Reducer<TodoState, TodoAction> = (
+  state: TodoState,
+  action: TodoAction
 ) => {
   switch (action.type) {
     case ActionType.ADD_TODO:
@@ -46,6 +49,7 @@ export const reducer: React.Reducer<State, Action> = (
         {
           content: action.payload.content,
           note: action.payload.note,
+          isDone: false,
         },
       ];
     case ActionType.REMOVE_TODO:
